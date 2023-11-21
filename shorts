@@ -1,2 +1,8 @@
 ./gradlew bootJar --> packaging the application as a jar file
 java -jar build/libs/catalogService-0.0.1-SNAPSHOT.jar  --> to run it as a java application
+
+./gradlew bootRun  to run the project from the terminal
+http :9001/books/1234567891 --> using curl to call on the api
+http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="1234567891" price=9.90
+
+./gradlew test --tests BookValidationTests
