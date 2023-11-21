@@ -1,0 +1,2 @@
+./gradlew bootJar --> packaging the application as a jar file
+java -jar build/libs/catalogService-0.0.1-SNAPSHOT.jar  --> to run it as a java application
