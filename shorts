@@ -1,8 +1,16 @@
 ./gradlew bootJar --> packaging the application as a jar file
 java -jar build/libs/catalogService-0.0.1-SNAPSHOT.jar  --> to run it as a java application
+java -jar build/libs/catalogService-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
 
 ./gradlew bootRun  to run the project from the terminal
 http :9001/books/1234567891 --> using curl to call on the api
 http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="1234567891" price=9.90
 
 ./gradlew test --tests BookValidationTests
+
+.github/workflow/commit-stage.yml  --> file for the ci cd
+Security section of your catalogService GitHub repository to see the security vulnerability by grype
+
+./gradlew clean build
+
+docker run -d --name polar-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=polardb_catalog -p 5432:5432 postgres:14.4
