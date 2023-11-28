@@ -12,5 +12,26 @@ http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="123
 Security section of your catalogService GitHub repository to see the security vulnerability by grype
 
 ./gradlew clean build
-
+docker run --rm --name catalog-service -p 8080:8080 catalogService:0.0.1-SNAPSHOT
 docker run -d --name polar-postgres -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=polardb_catalog -p 5432:5432 postgres:14.4
+ To make it run with in a netword, add --net 'network name'
+ docker run -d --name polar-postgres --net catalogNetwork -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=polardb_catalog -p 5432:5432 postgres:14.4
+docker run -d \
+    --name polar-postgres \
+    --net catalog-network \
+    -e POSTGRES_USER=user \
+    -e POSTGRES_PASSWORD=password \
+    -e POSTGRES_DB=polardb_catalog \
+    -p 5432:5432 \
+    postgres:14.4
+docker build -t my-java-image:1.0.0 . (the '.' at the end is for to find docker file in the current dir)
+
+Publishing images on Github container registery
+ Setting -> developers setting -> genereate token -> write -> save
+ echo $PAT | docker login ghcr.io -u yosephog --password-stdin
+ docker login ghcr.io  -> in the terminal
+ docker tag my-java-image:1.0.0 ghcr.io/yosephog/my-java-image:1.0.0
+ docker push ghcr.io/yosephog/my-java-image:1.0.0
+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  docker token
+
+docker run -d --name catalog-service --net catalog-network -p 9001:9001 -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog -e SPRING_PROFILES_ACTIVE=testdata catalog-service

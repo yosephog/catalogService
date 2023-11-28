@@ -6,7 +6,6 @@ server:
   threads:
     min-spare: 5
     max: 50
-    timeout:
 
 spring:
   application:
