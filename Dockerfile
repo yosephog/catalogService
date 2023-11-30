@@ -1,8 +1,8 @@
 FROM eclipse-temurin:17 AS builder
 WORKDIR workspace
 ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} catalogService.jar
-RUN java -Djarmode=layertools -jar catalogService.jar extract
+COPY ${JAR_FILE} catalog-service.jar
+RUN java -Djarmode=layertools -jar catalog-service.jar extract
 
 FROM eclipse-temurin:17
 RUN useradd spring

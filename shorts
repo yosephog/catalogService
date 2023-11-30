@@ -33,5 +33,13 @@ Publishing images on Github container registery
  docker tag my-java-image:1.0.0 ghcr.io/yosephog/my-java-image:1.0.0
  docker push ghcr.io/yosephog/my-java-image:1.0.0
 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  docker token
+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
 
 docker run -d --name catalog-service --net catalog-network -p 9001:9001 -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog -e SPRING_PROFILES_ACTIVE=testdata catalog-service
+
+./gradlew bootBuildImage \
+    --imageName ghcr.io/yosephog/catalog--service \
+    --publishImage \
+    -PregistryUrl=ghcr.io \
+    -PregistryUsername=yosephog \
+    -PregistryToken=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
